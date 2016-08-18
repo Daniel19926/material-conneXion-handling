@@ -1,7 +1,7 @@
 <?php
 $DB_host = "mysql.hostinger.se";
 $DB_user = "u597716772_1";
-$DB_pass = "grosso15";
+$DB_pass = "Daniel5%";
 $DB_name = "u597716772_1";
 
 try
