@@ -1,5 +1,5 @@
 <?php
-$DB_host = "31.220.20.207";
+$DB_host = "mysql.hostinger.se";
 $DB_user = "u597716772_1";
 $DB_pass = "Daniel5%";
 $DB_name = "u597716772_1";
