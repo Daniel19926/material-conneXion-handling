@@ -5,7 +5,7 @@ class Database
     private $host = "mysql.hostinger.se";
     private $db_name = "u597716772_1";
     private $username = "u597716772_1";
-    private $password = "grosso15";
+    private $password = "Daniel5%";
     public $conn;
      
     public function dbConnection()
