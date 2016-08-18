@@ -114,33 +114,7 @@ include 'dbconnect.php';
 	</div>
 
 <div class="container">
-	<div class="row ">
-		<div class="col-xs-4">
-			<div class="form-group">
-				<table class = "table table-hover">
-					<h3>Top visitors <i class="fa fa-star" aria-hidden="true"></i></h3>
-						<thead>
-							<tr>
-								<th>Organisation</th>
-								<th>Visitors</th>
-							</tr>
-						</thead>
-			<tbody>
-			
-				<?php		
-					foreach($pdo->query( 'SELECT organisation, SUM( visitors ) AS visitors FROM visitor GROUP BY organisation ORDER BY SUM( visitors ) DESC LIMIT 5;' ) as $row)
-					{
-						
-					echo '<tr><td>'.$row['organisation'].'</td>';
-					echo '<td>'.$row['visitors'].'</td></tr>';
-				}
-				?>
-			
-			</tbody>
-		</table>
-	</div>
-</div>
-</div>
+
 <?php
 include 'dbconnect.php';
 /*
@@ -177,7 +151,7 @@ include 'dbconnect.php';
 
         foreach($result as $row) {
 			
-			print_r ($row);
+	//		print_r ($row);
 
 			$temp = array();
 
