@@ -1,6 +1,7 @@
 ﻿<?php
 include 'navbar.php';
 include 'dbconnect.php';
+ini_set( "display_errors", 0);
 ?>
 <html>
 <head>
@@ -27,7 +28,7 @@ include 'dbconnect.php';
 							<span class="count_bottom">
 								<?php foreach($pdo->query( 'CALL skovdeplant();' ) as $row);  
 									foreach($pdo->query( 'CALL counttotalmaterials();' ) as $rows);                                                                                                                            
-										$percent = ( $row['COUNT(id)'] / $rows['total']) * 100; 
+										$percent = ( $row['COUNT(id)'] / $rows['total']) * 100;  
 								
 						if ($percent < 10) {
 							echo '<i class="fa fa-sort-desc"></i><i class="red">'. number_format ($percent,1).'%','</i>' ;}
@@ -179,73 +180,8 @@ include 'dbconnect.php';
 		</div>
 	</div>	
 </body>	
-		      <!-- where the chart will be rendered -->
-    <div id="visualization"></div>
 </html>
-    <?php/*
- 
-    //include database connection
-	$mysqli=mysqli_connect('mysql.hostinger.se','u597716772_1','grosso15','u597716772_1');
-    //query all records from the database
-    $query = "SELECT category as Category, count(category) as Total
-			FROM library
-WHERE category IN('Cement-Based', 'Glass', 'Carbon-Based','Metals','Polymers','Ceramics','Naturals','Process')
-GROUP BY category;";
- 
-    //execute the query
-    $result = $mysqli->query( $query );
- 
-    //get number of rows returned
-    $num_results = $result->num_rows;
- 
 
-    if( $num_results > 0){
- 
-    ?>
-        <!-- load api -->
-        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-        
-        <script type="text/javascript">
-            //load package
-            google.load('visualization', '1', {packages: ['corechart']});
-			
-        </script>
- 
-        <script type="text/javascript">
-            function drawVisualization() {
-                // Create and populate the data table.
-                var data = google.visualization.arrayToDataTable([
-                    ['Category', 'Total'],
-                    <?php
-                    while( $row = $result->fetch_assoc() ){
-                        extract($row);
-                        echo "['{$Category}', {$Total}],";
-                    }
-                    ?>
-                ]);
- 
-                // Create and draw the visualization.
-                new google.visualization.PieChart(document.getElementById('visualization')).
-				
-                draw(data, {
-				title:"Materials in library",
-				width: 500,
-				height: 300,
-				chartArea:{left:0,top:0,width:"100%",height:"100%"},
-				colors: ['#adad85', '#99ccff', '#0099ff', '#33cc33', '#ff3300','#5c5c3d','#ff9900','#ff4d4d'],
-				is3D: false,
-				backgroundColor: 'transparent'});
-            }
- 
-            google.setOnLoadCallback(drawVisualization);
-			
-        </script>
-    <?php
- 
-    }else{
-        echo "No materials found in database.";
-    }*/	
-    ?>
      
 
 	  
