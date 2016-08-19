@@ -99,24 +99,24 @@ $(document).ready(function()
 	<body>
 		<div class="container">
 			<div class="controls">
-					<form class="form" action="addmaterial_reply.php" method="post">     					
+					<form class="form" action="addmaterial_reply.php" method="post">
 						<h3 class="form-signin-heading">Add material <i class="fa fa-plus" aria-hidden="true"></i></h3>
-						
+
 						<?php
-								if (!empty($_GET['successmessage'])) { 
+								if (!empty($_GET['successmessage'])) {
 
 										$msg=$_GET['successmessage'];
-										echo '<div class="alert alert-success"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> ',$msg,'</div>';	
+										echo '<div class="alert alert-success"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> ',$msg,'</div>';
 								}
-								
+
 								else
-									if (!empty($_GET['errormessage'])) { 
-								
+									if (!empty($_GET['errormessage'])) {
+
 									$msg=$_GET['errormessage'];
-									echo '<div class="alert alert-danger"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> ',$msg,'</div>';	
+									echo '<div class="alert alert-danger"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> ',$msg,'</div>';
 								}
 								else {
-									
+
 									echo '<div class="alert alert-info">';
 									echo 'Insert material to library';
 									echo '</div>';
@@ -130,40 +130,40 @@ $(document).ready(function()
 						</div>
 					</div>
 				</div>
-		
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class = "form-group">
 							<select required name="category" class="category form-control">
 								<option value="" selected="selected">Select category</option>
-								
+
 								<?php
 									$stmt = $DB_con->prepare("SELECT * from material");
 									$stmt->execute();
-									
+
 									while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 								?>
 								<option value="<?php echo $row['category']; ?>"><?php echo $row['category']; ?></option><?php
-								} 
+								}
 								?>
 							</select>
 						</div>
 					</div>
-					
-					<div class="col-md-6">		
+
+					<div class="col-md-6">
 						<div class = "form-group">
 						<select required name="placename" class="location form-control">
 							<option value="" selected="selected">Select location</option>
-							
+
 							<?php
 							$stmt = $DB_con->prepare("SELECT * from place");
 							$stmt->execute();
-							
+
 							while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 							?>
 							<option value="<?php echo $row['placename']; ?>"><?php echo $row['placename']; ?></option>
 							<?php
-							} 
+							}
 							?>
 						</select>
 					</div>
@@ -178,7 +178,7 @@ $(document).ready(function()
 							</select>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6">
 						<div class = "form-group">
 							<select required name="shelfname" class="shelf form-control">
@@ -187,7 +187,7 @@ $(document).ready(function()
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class = "form-group">
@@ -196,7 +196,7 @@ $(document).ready(function()
 							</select>
 						</div>
 					</div>
-				
+
 					<div class="col-md-6">
 						<div class = "form-group">
 							<select required name="position" class="position form-control">
@@ -205,15 +205,15 @@ $(document).ready(function()
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class = "form-group">
-							<button class="btn btn-primary" name="submit" type="submit">Submit</button>   
+							<button class="btn btn-primary" name="submit" type="submit">Submit</button>
 						</div>
 					</div>
-				</div>	
-			</form>	
+				</div>
+			</form>
 		</fieldset>
 	</div>
 </div>

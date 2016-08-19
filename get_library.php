@@ -36,7 +36,7 @@ if($_GET['shelf'])
 	$shelf=$_GET['shelf'];
 	$library=$_GET['library'];
 	
-	$stmt = $DB_con->prepare("SELECT rownumber FROM shelfrow WHERE shelfname=:shelf AND placeposition='$library'");
+	$stmt = $DB_con->prepare("SELECT rownumber FROM shelfrow WHERE shelfname=:shelf AND placeposition='$library' ORDER by rownumber ASC");
 	$stmt->execute(array(':shelf' => $shelf));
 	?><option selected="selected">Select row :</option><?php
 	while($row=$stmt->fetch(PDO::FETCH_ASSOC))
@@ -53,7 +53,7 @@ if($_GET['rownumber'])
 	$rownumber=$_GET['rownumber'];
 	$location=$_GET['location'];
 	
-	$stmt = $DB_con->prepare("SELECT position FROM rowposition WHERE (shelfname=:shelf AND rownumber=:rownumber AND placename=:location) and (id is null) ");
+	$stmt = $DB_con->prepare("SELECT position FROM rowposition WHERE (shelfname=:shelf AND rownumber=:rownumber AND placename=:location) and (id is null) ORDER by position ASC");
 	$stmt->execute(array(':shelf' => $shelf, ':rownumber' => $rownumber, ':location' => $location));
 
 	
