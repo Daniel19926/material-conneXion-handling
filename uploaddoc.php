@@ -64,7 +64,7 @@ function docexists(){
 		<div class = "form-group">
 			
 			
-				<input type="text" id="id" class="form-control" name="id" placeholder="Signature" maxlength="7" required = "required" />
+				<input type="text"  class="form-control" name="signature" placeholder="Signature" maxlength="7" required = "required" />
 			</div>
 		</div>
     <div class="form-group">
@@ -88,46 +88,6 @@ function docexists(){
 		</div>
 	</div>
 	</form>
-
-<?php
-/****** upload files ****/
-/*
-   if(isset($_FILES['image'])){
-      $file_name = $_FILES['image']['name'];
-      $file_size =$_FILES['image']['size'];
-      $file_tmp =$_FILES['image']['tmp_name'];
-      $file_type=$_FILES['image']['type'];
-      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
-      
-      $expensions= array("pdf","jpg","png");
-   
-      if(in_array($file_ext,$expensions)=== false){
-         wrongformat();
-      }
-	   /*
-		if (file_exists('/files'.$file_name)) {
-
-		docexists();
-		}*/
-/*		
-      else{
-			move_uploaded_file($file_tmp,"files/".$file_name);
-			docadded();
-      }
-   }
- */
-/******* retrive files ****/
-/*
-	$path    = './files';
-	$files = scandir($path);
-	$files = array_diff(scandir($path), array('.', '..'));
-
-		foreach($files as $file){
-			
-			echo "<table class = 'table table-striped'>";	
-			echo'<tr><object data><a target="_blank" type="application/pdf" href=".files/'.$file.'">'.$file.'</a></tr>';
-		}*/
-?>
 <?php
 
 
@@ -137,8 +97,8 @@ function docexists(){
 echo '<table class="table table-bordered">';	
 	echo '<thead class="cf">';
 		echo '<tr>';
-            echo '<th>Name</th>';
-			echo '<th>Date</th>';
+            echo '<th>File</th>';
+			echo '<th>Dete of delivery</th>';
             echo '<th>Type</th>';
             echo '<th>Size</th>';
             echo '<th>Signature</th>';
@@ -147,10 +107,13 @@ echo '<table class="table table-bordered">';
 		
 	echo '<tbody>'; 		
         echo '<tr>';
-			echo '<td>'.$row['file'].'</td>';
+			echo '<td><a target="_blank" href="files/'.$row['file'].'">'.$row['file'].'</a></td>';
+			echo '<td>'.$row['date'].'</td>';
 			echo '<td>'.$row['type'].'</td>';
-			echo '<td>'.$row['size'].'</td>';
-			echo '<td><a target="_blank" href="files/'.$row['file'].'">view file</a></td></tr>';
+			echo '<td>'.$row['size']." KB".'</td>';
+			echo '<td>'.$row['signature'].'</td>';
+		echo '</tr>';
+			
 	
 
 	echo '</tbody>'; 
@@ -179,13 +142,14 @@ if(isset($_FILES['image'])){
  
  if(move_uploaded_file($file_loc,$folder.$final_file)){
  //$sql="INSERT INTO tbl_uploads(file,type,size) VALUES('$file','$file_type','$file_size')";
- $insertpdf="INSERT INTO pdf(file, type, size, signature) 
-					VALUES(:file, :type, :size, :signature);";
+ $insertpdf="INSERT INTO pdf(file, type, size, signature, date) 
+					VALUES(:file, :type, :size, :signature, :date);";
 					$stmt = $DB_con->prepare($insertpdf);
 					$stmt->bindParam(':file', $final_file, PDO::PARAM_STR);
 					$stmt->bindParam(':type', $file_type, PDO::PARAM_STR);
 					$stmt->bindValue(':size', $file_size, PDO::PARAM_INT);
 					$stmt->bindParam(':signature', $_POST['signature'], PDO::PARAM_STR);
+					$stmt->bindParam(':date', $_POST['date'], PDO::PARAM_STR);
 					$stmt->execute();
  
 }}

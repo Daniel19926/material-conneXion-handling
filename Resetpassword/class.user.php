@@ -47,7 +47,7 @@ class USER
 		$mail->Port       = 25;             
 		$mail->AddAddress($email);
 		$mail->Username="daniel@danielrosmark.me";  
-		$mail->Password="Daniel5%";            
+		$mail->Password="grosso15";            
 		$mail->SetFrom('daniel.rosmark@gmail.com','Material Handling');
 		$mail->AddReplyTo("daniel.rosmark@gmail.com","Material Handling");
 		$mail->Subject    = $subject;

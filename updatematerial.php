@@ -60,12 +60,12 @@ include 'navbar.php';
 					<div class="col-xs-6">
 						<div class="form-group">
 							<select required="required" name="matstatus" class="category form-control" >
-								<option value="" selected="selected">Select reason</option>
-								<option>Structuring library shelfs</option>
-								<option>Material on event</option>
-								<option>Return material to supplier</option>
-								<option>Material moved to storage</option>
-								<option value="other">Other</option>
+								<option value="">Select reason</option>
+								<option value="Structuring library shelfs">Structuring library shelfs</option>
+								<option value="Material on event">Material on event</option>
+								<option value="Return material to supplier">Return material to supplier</option>
+								<option value="Material moved to storage">Material moved to storage</option>
+								<option value="other">other</option>
 							</select>
 						</div>
 					</div>
@@ -324,10 +324,7 @@ include 'navbar.php';
 
 	};
 	
-
 	
-
-	//var input = (category, location, library, shelf, rownumber, position);
 
 
 	$( "#import" ).click(function() {
@@ -352,7 +349,7 @@ include 'navbar.php';
 		buildSelect( false);
 	});
 
-	/* ********************************** */
+	// hiddendiv  for "other"
 	
 	$('select[name=matstatus]').change(function () {
     if ($(this).val() == 'other') {

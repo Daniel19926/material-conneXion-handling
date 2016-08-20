@@ -13,7 +13,7 @@ include 'navbar.php';
 <div class="container">
 	<div class = "form-group">
 		<div class="col-md-12">
-			<form class="form-mid" action="user_reply.php" method="post">       
+			<form class="form" action="user_reply.php" method="post">       
 				<h3>Current user <span class="glyphicon glyphicon-user" aria-hidden="true"></span></h3>
 
 <fieldset>

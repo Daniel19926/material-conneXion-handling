@@ -17,10 +17,7 @@ function wrongmaterial(){
 		exit; }
 		
 
-	if(isset($_GET['get'])) {
-		
-		
-			
+	if(isset($_GET['get'])) { // Get content for JSON
 			
 			if($_GET['get'] == 'get'){
 				$id = $_GET['id'];
@@ -34,21 +31,27 @@ function wrongmaterial(){
 		}
 include 'navbar.php';
 
+	
 if(isset($_POST['submit'])){ 
 
-	$eventtype = 'Update';
-	$id = $_POST['id'];
-		if(!preg_match('/^[0-9][0-9][0-9][0-9][\-][0-9][0-9]$/', $id)){ //ID in correct format
-			userdemand();
+		$eventtype = 'Update';
+		$id = $_POST['id'];	
+
+		if ($_POST['matstatus']!='other'){// if select option is other or not, change value of select option
+					$_POST['matstatus'];				
 		}
-		else {
-			$id = $_POST['id']; //Check if ID is in database
-			$searchqueryuser = $DB_con->prepare("SELECT placename, placeposition, shelfname, rownumber, position FROM rowposition where id=:id");
-			$searchqueryuser->bindParam(':id', $id);
-			$searchqueryuser->execute();
-			if($searchqueryuser->rowCount() < 1){
-				wrongmaterial(); //Goes of when id is not in database
-			} else { 
+			else {
+					$_POST['matstatus']='Other: '.$_POST['notes'];
+			}
+
+					$insertquerymaterial='INSERT INTO logtable (id, matstatus, username, eventtype)
+					VALUES(:id, :matstatus, :username, :eventtype);';
+					$stmt = $DB_con->prepare($insertquerymaterial);
+					$stmt->bindParam(':id', $_POST['id'], PDO::PARAM_STR);
+					$stmt->bindParam(':matstatus', $_POST['matstatus'], PDO::PARAM_STR);
+					$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+					$stmt->bindParam(':eventtype', $eventtype, PDO::PARAM_STR);
+					$stmt->execute();
 
 			
 					$insertquerymaterial='update library set matstatus=:matstatus, username=:username, position=:position, rownumber=:rownumber, shelfname=:shelfname,
@@ -81,20 +84,9 @@ if(isset($_POST['submit'])){
 					$stmt->bindParam(':placename', $_POST['placename'], PDO::PARAM_STR);
 					$stmt->bindParam(':shelfname', $_POST['shelfname'], PDO::PARAM_STR);
 					$stmt->execute();
-		
-				
-					$insertquerymaterial='INSERT INTO logtable (id, matstatus, username, eventtype)
-					VALUES(:id, :matstatus, :username, :eventtype);';
-					$stmt = $DB_con->prepare($insertquerymaterial);
-					$stmt->bindParam(':id', $_POST['id'], PDO::PARAM_STR);
-					$stmt->bindParam(':matstatus', $_POST['matstatus'], PDO::PARAM_STR);
-					$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
-					$stmt->bindParam(':eventtype', $eventtype, PDO::PARAM_STR);
-					$stmt->execute();
-				
-		}	
+
 	}				
-}	
+	
 		materialupdate();
 
 ?>

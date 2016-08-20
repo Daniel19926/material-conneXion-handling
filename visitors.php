@@ -195,11 +195,11 @@ include 'dbconnect.php';
     //echo $jsonTable;
 
     ?>
-    <div class="col-1-2">
+	<h3>Visitors per month</h3>
 	<div id="chart_div" class="chart"></div>
-</div>
+
 			<div class="row">
-				<div class="col-xs-8">
+				<div class="col-xs-12">
 				<div class="form-group">
 
 						<h3>Add visitor <i class="fa fa-user-plus" aria-hidden="true"></i></h3>
@@ -223,14 +223,14 @@ include 'dbconnect.php';
 				</div>
 
 					<div class="row">
-						<div class="col-xs-4  pull-left">
+						<div class="col-xs-6">
 							<div class="form-group">
 
 								<input type="text" class="form-control" id="vname" name="vname" placeholder="Name"/>
 							</div>
 						</div>
 
-						<div class="col-xs-4">
+						<div class="col-xs-6">
 							<div class="form-group">
 
 								<input type="text" class="form-control" id="organisation" name="organisation" placeholder="Organisation"/>
@@ -239,14 +239,14 @@ include 'dbconnect.php';
 					</div>
 
 					<div class="row">
-						<div class="col-xs-4 pull-left">
+						<div class="col-xs-6 pull-left">
 							<div class="form-group">
 
 								<input type="text" class="form-control" id="title" name="title" placeholder="Title"/>
 							</div>
 						</div>
 
-						<div class="col-xs-4">
+						<div class="col-xs-6">
 							<div class="form-group">
 
 								<input type="number" class="form-control" id="visitors" name="visitors" placeholder="Number of visitors"/>
@@ -258,7 +258,7 @@ include 'dbconnect.php';
 
 
 					<div class="row">
-						<div class="col-xs-4">
+						<div class="col-xs-6">
 							<div class="form-group">
 
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email"/>
@@ -267,13 +267,13 @@ include 'dbconnect.php';
 
 						<div class="col-xs-4">
 							<div class="form-group">
-								<a href="visitorexcel.php" "target="_blank"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Export visitors to excel</button></a>
+								<a href="visitorexcel.php" "target="_blank"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Export to excel</button></a>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-xs-4">
+						<div class="col-xs-6">
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
@@ -299,10 +299,10 @@ include 'dbconnect.php';
           var data = new google.visualization.DataTable(<?=$jsonTable?>);
 
           var options = {
-               title: 'Visitors per month',
+           //    title: 'Visitors per month',
               is3D: 'false',
 			  backgroundColor: 'transparent',
-			  chartArea : { left: '5%', top: '8%',bottom: '8%', width: '70%', height: '70%' },
+			  chartArea : { left: '5%', top: '8%',bottom: '8%', width: '85%', height: '70%' },
 			  pointSize: 5,
               width: '100%',
               height: 300
@@ -313,7 +313,7 @@ include 'dbconnect.php';
           chart.draw(data, options);
         }
         $(window).resize(function(){
-  drawChart();
-});
+		drawChart();
+		});
         </script>
 </html>

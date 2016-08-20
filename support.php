@@ -35,6 +35,7 @@ include 'dbconnect.php';
 						echo 'Describe your problem and provide the error code, if available';
 						echo '</div>';
 						}
+			
 				?>
 				
 			<form id="fields" name="fields" method="post" action="contact.php" role="form">
@@ -44,12 +45,12 @@ include 'dbconnect.php';
                                 <div class="col-xs-6">
                                     <div class="form-group">
 									
-										<select required name="category" class="category form-control">
-											<option value="select issue" selected="selected">Select issue</option>
-											<option value="storage">Storing materials and shelfs</option>
-											<option value="user">User and user settings</option>
-											<option value="user">I got an error code while working in the system</option>
-											<option value="other">Other</option>
+										<select required="required" name="issue" class="category form-control">
+											<option value="">Select issue</option>
+											<option>Storing materials and shelfs</option>
+											<option>User and user settings</option>
+											<option>I got an error code while working in the system</option>
+											<option>Other</option>
 											<div class="help-block with-errors"></div>
 										</select>
 										
@@ -58,7 +59,7 @@ include 'dbconnect.php';
 								
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input id="form_phone" type="tel" name="Phone" class="form-control" placeholder="Phone">
+                                        <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Phone">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
