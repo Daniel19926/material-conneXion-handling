@@ -2,7 +2,7 @@
 class Database
 {
      
-    private $host = "mysql.hostinger.se";
+    private $host = "31.220.20.207";
     private $db_name = "u597716772_1";
     private $username = "u597716772_1";
     private $password = "grosso15";
